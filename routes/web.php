@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Auth\Events\Login;
 
-Route::get('/',[\App\Http\Controllers\SiteController::class, 'index']);
-
-// mvc
-//Model -> Database interaction
-//View -> User interface
-//Controller -> Business logic
+Route::get('/', [SiteController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index']);
