@@ -9,9 +9,11 @@ class SiteController extends Controller
         $nome = 'Daniel';
         $habits = ['PHP', 'Laravel', 'Java', 'Futebol'];
 
-        return view('home', [
-            'nome' => $nome,
-            'habits' => $habits
-        ]);
+        return view('home', compact('nome', 'habits'));
+    }
+
+    public function dashboard()
+    {
+        return view('dashboard');
     }
 }
