@@ -82,7 +82,7 @@
             </form>
 
             <p class="text-center mt-4">
-                Já tem uma conta? <a href="{{ route('site.login') }}"
+                Já tem uma conta? <a href="{{ route('login') }}"
                     class="text-blue-500 underline hover:opacity-60 transition">Faça login</a>
             </p>
 

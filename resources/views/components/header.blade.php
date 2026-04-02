@@ -18,7 +18,7 @@
         @endauth
 
         @guest
-            <a href="{{ route('site.login') }}" class="bg-white p-2 border-2">
+            <a href="{{ route('login') }}" class="bg-white p-2 border-2">
                 Login
             </a>
         @endguest
