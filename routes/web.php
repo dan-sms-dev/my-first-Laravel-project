@@ -7,11 +7,11 @@ use App\Http\Controllers\RegisterController;
 
 Route::get('/', [SiteController::class, 'index'])-> name('site.index');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate'])-> name('auth.login');
+Route::get('/login', [LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.login');
 
-Route::get('/register', [RegisterController::class, 'index'])-> name('site.register');
-Route::post('/register', [RegisterController::class, 'store'])-> name('auth.register');
+Route::get('/register', [RegisterController::class, 'index'])->name('site.register');
+Route::post('/register', [RegisterController::class, 'store'])->name('auth.register');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [SiteController::class, 'dashboard'])-> name('site.dashboard');
