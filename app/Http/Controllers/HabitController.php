@@ -33,7 +33,7 @@ class HabitController extends Controller
      */
     public function edit(Habit $habit)
     {
-        //
+        return view('habits.edit', compact('habit'));
     }
 
     /**
@@ -41,7 +41,15 @@ class HabitController extends Controller
      */
     public function update(Request $request, Habit $habit)
     {
-        //
+        if ($habit->user_id !== auth()->user()->id) {
+            abort(403, 'Ação não autorizada.');
+        }
+
+        $habit->update($request->all());
+
+        return redirect()
+            ->route('site.dashboard')
+            ->with('success', 'Hábito atualizado com sucesso!');
     }
 
     /**
@@ -49,14 +57,14 @@ class HabitController extends Controller
      */
     public function destroy(Habit $habit)
     {
-    if ($habit->user_id !== auth()->user()->id) {
+        if ($habit->user_id !== auth()->user()->id) {
             abort(403, 'Ação não autorizada.');
         }
 
         $habit->delete();
 
         return redirect()
-        ->route('site.dashboard')
-        ->with('success', 'Hábito deletado com sucesso!');
+            ->route('site.dashboard')
+            ->with('success', 'Hábito deletado com sucesso!');
     }
 }
