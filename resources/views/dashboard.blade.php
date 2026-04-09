@@ -51,7 +51,7 @@
                             Ainda não há hábitos cadastrados.
                         </p>
                         <a href="{{ route('habits.create') }}"
-                            class="bg-blue-500 text-white px-3 py-1 text-sm border-2 mt-4 inline-block rounded-md w-auto max-w-[220px] text-center">
+                            class="bg-blue-500 text-white text-center px-3 py-1 rounded-md ">
                             Cadastre um novo hábito
                         </a>
                     @endforelse

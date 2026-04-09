@@ -53,6 +53,28 @@ unset($__sessionArgs); ?>
                                 <p>
                                     [<?php echo e($item->habitLogs()->count()); ?> registros]
                                 </p>
+                                <a class="bg-white-500 p-1 hover:opacity-60 cursor-pointer" href="<?php echo e(route('habits.edit', $item->id)); ?>">
+                                  <?php if (isset($component)) { $__componentOriginal32022bdceaa704d305484041fc21cb4a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal32022bdceaa704d305484041fc21cb4a = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icons.edit','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('icons.edit'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal32022bdceaa704d305484041fc21cb4a)): ?>
+<?php $attributes = $__attributesOriginal32022bdceaa704d305484041fc21cb4a; ?>
+<?php unset($__attributesOriginal32022bdceaa704d305484041fc21cb4a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal32022bdceaa704d305484041fc21cb4a)): ?>
+<?php $component = $__componentOriginal32022bdceaa704d305484041fc21cb4a; ?>
+<?php unset($__componentOriginal32022bdceaa704d305484041fc21cb4a); ?>
+<?php endif; ?>
+                                </a>
                                 <form action="<?php echo e(route('habits.destroy', $item)); ?>" method="POST">
                                   <?php echo csrf_field(); ?>
                                   <?php echo method_field('DELETE'); ?>
@@ -85,7 +107,7 @@ unset($__sessionArgs); ?>
                             Ainda não há hábitos cadastrados.
                         </p>
                         <a href="<?php echo e(route('habits.create')); ?>"
-                            class="bg-blue-500 text-white px-3 py-1 text-sm border-2 mt-4 inline-block rounded-md w-auto max-w-[220px] text-center">
+                            class="bg-blue-500 text-white text-center px-3 py-1 rounded-md ">
                             Cadastre um novo hábito
                         </a>
                     <?php endif; ?>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
@@ -12,10 +11,4 @@ class SiteController extends Controller
         return view('home');
     }
 
-    public function dashboard(): View
-    {
-        $habits = auth()->user()->habits;
-
-        return view('dashboard', compact('habits'));
-    }
 }
