@@ -49,20 +49,38 @@ unset($__sessionArgs); ?>
 
         <div">
             <h2 class="text-lg mt-8 mb-2">
-              <?php echo e(date('d/m/Y')); ?>
+                <?php echo e(date('d/m/Y')); ?>
 
             </h2>
 
             <ul class="flex flex-col gap-2">
                 <?php $__empty_1 = true; $__currentLoopData = $habits; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php
+                        $wasCompletedToday = $item->habitLogs()
+                            ->where('user_id', auth()->id())
+                            ->whereDate('completed_at', \Carbon\Carbon::today())
+                            ->exists();
+                    ?>
                     <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
-                        <div class="flex gap-2 items-center">
-                            <input type="checkbox" class="w-5 h-5 cursor-pointer"
-                                <?php echo e($item->is_completed ? 'checked' : ''); ?> disabled>
+                        <form
+                        action="<?php echo e(route('habits.toggle', $item->id)); ?>"
+                        method="POST"
+                        class="flex gap-2 items-center"
+                        id="form-<?php echo e($item->id); ?>"
+                        >
+                            <?php echo csrf_field(); ?>
+                            <input
+                                type="checkbox"
+                                class="w-5 h-5 cursor-pointer"
+                                <?php echo e($wasCompletedToday ? 'checked' : ''); ?>
+
+                                onchange="document.getElementById('form-<?php echo e($item->id); ?>').submit()"
+                            />
                             <p class="font-bold text-lg ">
                                 <?php echo e($item->name); ?>
 
                             </p>
+                        </form>
                     </li>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <p class="text-center">
@@ -74,7 +92,7 @@ unset($__sessionArgs); ?>
                     </a>
                 <?php endif; ?>
             </ul>
-        </div>
+            </div>
     </main>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
