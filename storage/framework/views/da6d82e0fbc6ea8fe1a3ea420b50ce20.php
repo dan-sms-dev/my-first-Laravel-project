@@ -1,8 +1,13 @@
 <header class="bg-white border-b-2 flex items-center justify-between p-4">
     
+    <div class="flex items-center gap-2">
     <a href="<?php echo e(route('habits.index')); ?>" class="habit-btn habit-shadow-lg px-2 py-1 bg-habit-blue">
         HT
     </a>
+    <p>
+      Habit Tracker
+    </p>
+    </div>
 
     <div class="flex items-center gap-4">
         
