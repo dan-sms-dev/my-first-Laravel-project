@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="py-10">
+    <main class="py-10 min-h-[calc(100vh-160px)]">
         <h1 class="text-4xl font-bold text-center">
             Dashboard
         </h1>
@@ -12,9 +12,8 @@
             </a>
 
             @session('success')
-                <div class="flex">
+                <div class="flex justify-center">
                     <p class="bg-green-100 border border-green-400 text-green-700 p-3 mb-4 block">
-                        mensagem
                         {{ session('success') }}
                     </p>
                 </div>
@@ -47,7 +46,7 @@
                                 </form>
                         </li>
                     @empty
-                        <p>
+                        <p class="text-center">
                             Ainda não há hábitos cadastrados.
                         </p>
                         <a href="{{ route('habits.create') }}"

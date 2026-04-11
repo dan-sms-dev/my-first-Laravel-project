@@ -23,7 +23,7 @@
 
                 </div>
                 @error('name')
-                    <p class="text-red-500 text-sm font-bold">
+                    <p class="text-red-500 text-sm font-bold text-center">
                         {{ $message }}
                     </p>
                 @enderror
@@ -39,7 +39,7 @@
 
                 </div>
                 @error('email')
-                    <p class="text-red-500 text-sm font-bold">
+                    <p class="text-red-500 text-sm font-bold text-center">
                         {{ $message }}
                     </p>
                 @enderror
@@ -50,12 +50,28 @@
                         Password
                     </label>
 
-                    <input type="password" name="password" placeholder="********"
-                        class="bg-white p-2 border-2 @error('password') border-red-500 @enderror">
+                    <div class="relative">
+                        <input id="register-password" type="password" name="password" placeholder="********"
+                            class="bg-white p-2 pr-12 w-full border-2 @error('password') border-red-500 @enderror">
+
+                        <button
+                            type="button"
+                            data-toggle-password
+                            data-target="register-password"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                            aria-label="Mostrar senha">
+                            <span data-eye-open class="hidden">
+                                <x-icons.eye />
+                            </span>
+                            <span data-eye-closed>
+                                <x-icons.eye-closed />
+                            </span>
+                        </button>
+                    </div>
 
                 </div>
                 @error('password')
-                    <p class="text-red-500 text-sm font-bold">
+                    <p class="text-red-500 text-sm font-bold text-center">
                         {{ $message }}
                     </p>
                 @enderror
@@ -66,12 +82,28 @@
                         Confirme sua senha
                     </label>
 
-                    <input type="password" name="password_confirmation" placeholder="********"
-                        class="bg-white p-2 border-2 @error('password_confirmation') border-red-500 @enderror">
+                    <div class="relative">
+                        <input id="register-password-confirmation" type="password" name="password_confirmation" placeholder="********"
+                            class="bg-white p-2 pr-12 w-full border-2 @error('password_confirmation') border-red-500 @enderror">
+
+                        <button
+                            type="button"
+                            data-toggle-password
+                            data-target="register-password-confirmation"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                            aria-label="Mostrar senha">
+                            <span data-eye-open class="hidden">
+                                <x-icons.eye />
+                            </span>
+                            <span data-eye-closed>
+                                <x-icons.eye-closed />
+                            </span>
+                        </button>
+                    </div>
 
                 </div>
                 @error('password')
-                    <p class="text-red-500 text-sm font-bold">
+                    <p class="text-red-500 text-sm font-bold text-center">
                         {{ $message }}
                     </p>
                 @enderror
@@ -88,4 +120,23 @@
 
         </section>
     </main>
+
+    <script>
+        document.querySelectorAll('[data-toggle-password]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const input = document.getElementById(button.dataset.target);
+
+                if (!input) {
+                    return;
+                }
+
+                const isPassword = input.type === 'password';
+
+                input.type = isPassword ? 'text' : 'password';
+                button.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+                button.querySelector('[data-eye-open]')?.classList.toggle('hidden', !isPassword);
+                button.querySelector('[data-eye-closed]')?.classList.toggle('hidden', isPassword);
+            });
+        });
+    </script>
 </x-layout>

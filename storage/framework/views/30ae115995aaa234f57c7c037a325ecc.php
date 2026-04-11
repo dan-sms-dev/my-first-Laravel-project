@@ -8,7 +8,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-    <main class="py-10">
+    <main class="py-10 min-h-[calc(100vh-160px)]">
         <h1 class="text-4xl font-bold text-center">
             Dashboard
         </h1>
@@ -24,9 +24,8 @@
 if (session()->has($__sessionArgs[0])) :
 if (isset($value)) { $__sessionPrevious[] = $value; }
 $value = session()->get($__sessionArgs[0]); ?>
-                <div class="flex">
+                <div class="flex justify-center">
                     <p class="bg-green-100 border border-green-400 text-green-700 p-3 mb-4 block">
-                        mensagem
                         <?php echo e(session('success')); ?>
 
                     </p>
@@ -103,7 +102,7 @@ unset($__sessionArgs); ?>
                                 </form>
                         </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                        <p>
+                        <p class="text-center">
                             Ainda não há hábitos cadastrados.
                         </p>
                         <a href="<?php echo e(route('habits.create')); ?>"

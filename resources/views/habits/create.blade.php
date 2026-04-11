@@ -21,7 +21,7 @@
 
         </div>
         @error('name')
-          <p class="text-red-500 text-sm font-bold">
+          <p class="text-red-500 text-sm font-bold text-center">
             {{ $message }}
           </p>
         @enderror
