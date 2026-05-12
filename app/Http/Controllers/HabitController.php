@@ -13,7 +13,9 @@ class HabitController extends Controller
 {
     public function index(): View
     {
-        $habits = Auth::user()->habits()->orderBy('created_at', 'desc')->get();
+        $habits = Auth::user()->habits()
+            ->with('habitLogs')
+            ->get();
 
         return view('dashboard', compact('habits'));
     }

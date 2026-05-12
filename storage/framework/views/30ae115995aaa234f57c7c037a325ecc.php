@@ -55,12 +55,6 @@ unset($__sessionArgs); ?>
 
             <ul class="flex flex-col gap-2">
                 <?php $__empty_1 = true; $__currentLoopData = $habits; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                    <?php
-                        $wasCompletedToday = $item->habitLogs()
-                            ->where('user_id', auth()->id())
-                            ->whereDate('completed_at', \Carbon\Carbon::today())
-                            ->exists();
-                    ?>
                     <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
                         <form
                         action="<?php echo e(route('habits.toggle', $item->id)); ?>"
@@ -72,7 +66,7 @@ unset($__sessionArgs); ?>
                             <input
                                 type="checkbox"
                                 class="w-5 h-5 cursor-pointer"
-                                <?php echo e($wasCompletedToday ? 'checked' : ''); ?>
+                                <?php echo e($item->wasCompletedToday() ? 'checked' : ''); ?>
 
                                 onchange="document.getElementById('form-<?php echo e($item->id); ?>').submit()"
                             />

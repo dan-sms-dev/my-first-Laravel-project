@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Carbon\Carbon;
 
 class Habit extends Model
 {
@@ -31,6 +32,12 @@ class Habit extends Model
     public function habitLogEntries(): HasMany
     {
         return $this->hasMany(HabitLog::class);
+    }
 
+    public function wasCompletedToday(): bool
+    {
+        return $this->habitLogs()
+            ->whereDate('completed_at', Carbon::today()->toDateString())
+            ->exists();
     }
 }
