@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="py-10 min-h-[calc(100vh-160px)] px-4">
+    <main class="max-w-7xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
 
         <x-navbar />
 
@@ -11,7 +11,21 @@
             </div>
         @endsession
 
-        <div">
+        <div>
+            <div>
+                @forelse($habits as $habit)
+                    <x-contribution :habit="$habit" />
+                @empty
+                    <div>
+                        <p class="text-black">
+                            Nenhum hábito para exibir histórico.
+                        </p>
+                        <a href="{{ route('habits.create') }}" class="underline ">
+                            Crie um novo hábito
+                        </a>
+                    </div>
+                @endforelse
+            </div>
             <h2 class="text-lg mt-8 mb-2">
                 {{ date('d/m/Y') }}
             </h2>
@@ -19,19 +33,12 @@
             <ul class="flex flex-col gap-2">
                 @forelse ($habits as $item)
                     <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
-                        <form
-                        action="{{ route('habits.toggle', $item->id) }}"
-                        method="POST"
-                        class="flex gap-2 items-center"
-                        id="form-{{ $item->id }}"
-                        >
+                        <form action="{{ route('habits.toggle', $item->id) }}" method="POST"
+                            class="flex gap-2 items-center" id="form-{{ $item->id }}">
                             @csrf
-                            <input
-                                type="checkbox"
-                                class="w-5 h-5 cursor-pointer"
+                            <input type="checkbox" class="w-5 h-5 cursor-pointer"
                                 {{ $item->wasCompletedToday() ? 'checked' : '' }}
-                                onchange="document.getElementById('form-{{ $item->id }}').submit()"
-                            />
+                                onchange="document.getElementById('form-{{ $item->id }}').submit()" />
                             <p class="font-bold text-lg ">
                                 {{ $item->name }}
                             </p>
