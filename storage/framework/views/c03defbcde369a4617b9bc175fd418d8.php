@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li>
-                <a href="@" class="text-md border-r-3 border-habit-blue pr-2 hover:underline">
+                <a href="<?php echo e(route('habits.history')); ?>" class="<?php echo e(Route::is('habits.history') ? 'font-bold underline' : ''); ?> text-md border-r-3 border-habit-blue pr-2 hover:underline">
                     Historico
                 </a>
             </li>
@@ -18,7 +18,8 @@
                 </a>
             </li>
             <li>
-                <a href="<?php echo e(route('habits.settings')); ?>" class="<?php echo e(Route::is('habits.settings') ? 'font-bold underline' : ''); ?> text-md hover:underline">
+                <a href="<?php echo e(route('habits.settings')); ?>"
+                    class="<?php echo e(Route::is('habits.settings') ? 'font-bold underline' : ''); ?> text-md hover:underline">
                     Gerenciar hábitos
                 </a>
             </li>

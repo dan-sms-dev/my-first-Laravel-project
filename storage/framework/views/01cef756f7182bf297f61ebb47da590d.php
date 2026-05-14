@@ -31,55 +31,38 @@
 <?php unset($__componentOriginala591787d01fe92c5706972626cdf7231); ?>
 <?php endif; ?>
 
-        <?php $__sessionArgs = ['success'];
-if (session()->has($__sessionArgs[0])) :
-if (isset($value)) { $__sessionPrevious[] = $value; }
-$value = session()->get($__sessionArgs[0]); ?>
-            <div class="flex justify-center">
-                <p class="bg-green-100 border border-green-400 text-green-700 p-3 mb-4 block">
-                    <?php echo e(session('success')); ?>
-
+        <?php $__empty_1 = true; $__currentLoopData = $habits; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $habit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <?php if (isset($component)) { $__componentOriginal8049dc57821327c0fd2af1a1c82e4411 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal8049dc57821327c0fd2af1a1c82e4411 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.contribution','data' => ['habit' => $habit,'year' => $selectedYear]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('contribution'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['habit' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($habit),'year' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($selectedYear)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal8049dc57821327c0fd2af1a1c82e4411)): ?>
+<?php $attributes = $__attributesOriginal8049dc57821327c0fd2af1a1c82e4411; ?>
+<?php unset($__attributesOriginal8049dc57821327c0fd2af1a1c82e4411); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8049dc57821327c0fd2af1a1c82e4411)): ?>
+<?php $component = $__componentOriginal8049dc57821327c0fd2af1a1c82e4411; ?>
+<?php unset($__componentOriginal8049dc57821327c0fd2af1a1c82e4411); ?>
+<?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+            <div>
+                <p class="text-black">
+                    Nenhum hábito para exibir histórico.
                 </p>
+                <a href="<?php echo e(route('habits.create')); ?>" class="underline ">
+                    Crie um novo hábito
+                </a>
             </div>
-        <?php unset($value);
-if (isset($__sessionPrevious) && !empty($__sessionPrevious)) { $value = array_pop($__sessionPrevious); }
-if (isset($__sessionPrevious) && empty($__sessionPrevious)) { unset($__sessionPrevious); }
-endif;
-unset($__sessionArgs); ?>
+        <?php endif; ?>
 
-        <div>
-            <h2 class="text-lg mt-8 mb-2">
-                <?php echo e(date('d/m/Y')); ?>
-
-            </h2>
-
-            <ul class="flex flex-col gap-2">
-                <?php $__empty_1 = true; $__currentLoopData = $habits; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                    <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
-                        <form action="<?php echo e(route('habits.toggle', $item->id)); ?>" method="POST"
-                            class="flex gap-2 items-center" id="form-<?php echo e($item->id); ?>">
-                            <?php echo csrf_field(); ?>
-                            <input type="checkbox" class="w-5 h-5 cursor-pointer"
-                                <?php echo e($item->wasCompletedToday() ? 'checked' : ''); ?>
-
-                                onchange="document.getElementById('form-<?php echo e($item->id); ?>').submit()" />
-                            <p class="font-bold text-lg ">
-                                <?php echo e($item->name); ?>
-
-                            </p>
-                        </form>
-                    </li>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                    <p class="text-center">
-                        Ainda não há hábitos cadastrados.
-                    </p>
-                    <a href="<?php echo e(route('habits.create')); ?>"
-                        class="bg-blue-500 text-white text-center px-3 py-1 rounded-md ">
-                        Cadastre um novo hábito
-                    </a>
-                <?php endif; ?>
-            </ul>
-            </div>
     </main>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -91,4 +74,4 @@ unset($__sessionArgs); ?>
 <?php $component = $__componentOriginal23a33f287873b564aaf305a1526eada4; ?>
 <?php unset($__componentOriginal23a33f287873b564aaf305a1526eada4); ?>
 <?php endif; ?>
-<?php /**PATH C:\Users\Almir\first-project\resources\views/dashboard.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\Almir\first-project\resources\views/habits/history.blade.php ENDPATH**/ ?>
